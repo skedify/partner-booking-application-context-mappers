@@ -1,0 +1,26 @@
+{
+  "name": "partner-booking-application-mappers",
+  "version": "1.0.0",
+  "description": "Repository containing all vanilla JS mappers for the PBA Instances",
+  "main": "index.js",
+  "scripts": {
+    "lint": "./node_modules/.bin/jslint mappers/*.js",
+    "test": "jest"
+  },
+  "author": "Florian Van Damme <vandammeflorian@gmail.com>",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "babel-jest": "^24.9.0",
+    "husky": "^3.0.9",
+    "jest": "^24.9.0",
+    "jslint": "^0.12.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test"
+    }
+  }
+}
