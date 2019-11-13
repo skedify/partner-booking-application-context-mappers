@@ -8,6 +8,7 @@ export default function mapper(input) {
     }
 
     if ('category' in input.customer) {
+        input.category = input.customer.category;
         return input;
     }
 
