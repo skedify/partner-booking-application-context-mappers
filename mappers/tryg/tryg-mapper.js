@@ -8,12 +8,12 @@ export default function mapper(input) {
     }
 
     if ('customer_number' in input.customer) {
-        input.customer.category = 'Private';
+        input.category = 'Private';
         return input;
     }
 
     if ('company_cvr_number' in input.customer) {
-        input.customer.category = 'Business';
+        input.category = 'Business';
         return input;
     }
 
@@ -27,28 +27,28 @@ export default function mapper(input) {
 
     switch (partnerSegment) {
         case 'Private':
-            input.customer.category = 'Private';
+            input.category = 'Private';
             break;
         case 'Private BusinessDirect':
-            input.customer.category = 'Private';
+            input.category = 'Private';
             break;
         case 'Private Business':
-            input.customer.category = 'Business';
+            input.category = 'Business';
             break;
         case 'PrivateBanking':
-            input.customer.category = 'Private';
+            input.category = 'Private';
             break;
         case 'PrivateBanking BusinessDirect':
-            input.customer.category = 'Private';
+            input.category = 'Private';
             break;
         case 'PrivateBanking Business':
-            input.customer.category = 'Private';
+            input.category = 'Private';
             break;
         case 'BusinessDirect':
-            input.customer.category = 'Business';
+            input.category = 'Business';
             break;
         case 'Business':
-            input.customer.category = 'Business';
+            input.category = 'Business';
             break;
         default:
             break;
