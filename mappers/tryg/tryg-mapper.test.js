@@ -45,6 +45,11 @@ describe('TrygMapper', () => {
         },
     };
 
+    it('should return the input if category is defined', () => {
+        const result = mapper({ category: '123' });
+        expect(result.category).toEqual('123');
+    });
+
     it('should return the input if no customer is defined', () => {
        const result = mapper({ booker: '123' });
        expect(result.booker).toEqual('123');

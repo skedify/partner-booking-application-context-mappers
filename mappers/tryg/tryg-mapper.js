@@ -1,4 +1,8 @@
 export default function mapper(input) {
+    if ('category' in input) {
+        return input;
+    }
+
     if (!('customer' in input)) {
         return input;
     }
