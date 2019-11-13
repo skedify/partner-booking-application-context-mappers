@@ -1,4 +1,6 @@
 export default function mapper(input) {
+    input.booking_system = 'Skedify';
+
     if ('category' in input) {
         return input;
     }
