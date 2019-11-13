@@ -21,7 +21,11 @@ export default function mapper(input) {
         return input;
     }
 
-    switch (input.customer.partner_segment.join(' ')) {
+    const partnerSegment = Array.isArray(input.customer.partner_segment)
+        ? input.customer.partner_segment.join(' ')
+        : input.customer.partner_segment;
+
+    switch (partnerSegment) {
         case 'Private':
             input.customer.category = 'Private';
             break;
