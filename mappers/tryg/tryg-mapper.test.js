@@ -9,7 +9,7 @@ describe('TrygMapper', () => {
         },
         2: {
             in: ['Private', 'BusinessDirect'],
-            out: 'Private',
+            out: 'Business',
         },
         4: {
             in: ['Private', 'Business'],
@@ -21,11 +21,11 @@ describe('TrygMapper', () => {
         },
         8: {
             in: ['PrivateBanking', 'BusinessDirect'],
-            out: 'Private',
+            out: 'Business',
         },
         10: {
             in: ['PrivateBanking', 'Business'],
-            out: 'Private',
+            out: 'Business',
         },
         12: {
             in: ['BusinessDirect'],
