@@ -16,55 +16,24 @@ export default function mapper(input) {
     const propertyType = input.propertyType;
 
     switch (propertyType) {
-
         case 'APARTMENT':
-            input.customer.is_houseowner = 'false'; // We want this to automatically set the qualification question to "no"
-            break;
-
         case 'BUSIRENTAL':
-            input.customer.is_houseowner = 'false'; // We want this to automatically set the qualification question to "no"
+        case 'GARDEN':
+        case 'HOLIDAY':
+        case 'RESIRENTAL':
+        case 'ROOM':
+        case 'PLOTDETA':
+        case 'PLOTHOLIDA':
+            input.customer.is_houseowner = 'false';
             break;
 
         case 'DETACHED':
-            input.customer.is_houseowner = 'true'; // We want this to automatically set the qualification question to "yes"
-            break;
-
-        case 'GARDEN':
-            input.customer.is_houseowner = 'false'; // We want this to automatically set the qualification question to "no"
-            break;
-
         case 'HOBBYAGRI':
-            input.customer.is_houseowner = 'true'; // We want this to automatically set the qualification question to "yes"
-            break;
-
-        case 'HOLIDAY':
-            input.customer.is_houseowner = 'true'; // We want this to automatically set the qualification question to "yes"
-            break;
-
-        case 'RESIRENTAL':
-            input.customer.is_houseowner = 'false'; // We want this to automatically set the qualification question to "no"
-            break;
-
-        case 'ROOM':
-            input.customer.is_houseowner = 'false'; // We want this to automatically set the qualification question to "no"
+            input.customer.is_houseowner = 'true';
             break;
 
         case 'TERRACE':
-            input.customer.is_houseowner = 'false'; // We want this to automatically set the qualification question to "no"
-            break;
-
         case 'UNKNOWN':
-            input.customer.is_houseowner = 'false'; // We want this to automatically set the qualification question to "no"
-            break;
-
-        case 'PLOTDETA':
-            input.customer.is_houseowner = 'false'; // We want this to automatically set the qualification question to "no"
-            break;
-
-        case 'PLOTHOLIDA':
-            input.customer.is_houseowner = 'false'; // We want this to automatically set the qualification question to "no"
-            break;
-
         default:
             break;
     }
@@ -101,10 +70,10 @@ export default function mapper(input) {
             return input;
         }
 
-        if (partnerSegment.includes("BusinessDirect")) {
+        if (partnerSegment.includes("Business Direct")) {
             input.category = 'Business';
             input.business_segment = 'Business';
-            input.partner_segment = 'BusinessDirect';
+            input.partner_segment = 'Business Direct';
 
             if ('customer_number' in input.customer) {
                 input.category = 'Private';
@@ -119,10 +88,10 @@ export default function mapper(input) {
             return input;
         }
 
-        if (partnerSegment.includes("PrivateBanking")) {
+        if (partnerSegment.includes("Private Banking")) {
             input.category = 'Private';
             input.business_segment = 'Private';
-            input.partner_segment = 'PrivateBanking';
+            input.partner_segment = 'Private Banking';
 
             if ('customer_number' in input.customer) {
                 input.category = 'Private';
