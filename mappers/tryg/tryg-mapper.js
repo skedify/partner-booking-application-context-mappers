@@ -55,34 +55,34 @@ export default function mapper(input) {
 
         if (partnerSegment.includes("Business")) {
             input.category = 'Business';
-            input.business_segment = 'Business';
-            input.partner_segment = 'Business';
+            input.customer.business_segment = 'Business';
+            input.customer.partner_segment = 'Business';
 
             if ('customer_number' in input.customer) {
                 input.category = 'Private';
-                input.business_segment = 'Private';
+                input.customer.business_segment = 'Private';
             }
 
             if ('company_cvr_number' in input.customer) {
                 input.category = 'Business';
-                input.business_segment = 'Business';
+                input.customer.business_segment = 'Business';
             }
             return input;
         }
 
         if (partnerSegment.includes("Business Direct")) {
             input.category = 'Business';
-            input.business_segment = 'Business';
-            input.partner_segment = 'Business Direct';
+            input.customer.business_segment = 'Business';
+            input.customer.partner_segment = 'Business Direct';
 
             if ('customer_number' in input.customer) {
                 input.category = 'Private';
-                input.business_segment = 'Private';
+                input.customer.business_segment = 'Private';
             }
 
             if ('company_cvr_number' in input.customer) {
                 input.category = 'Business';
-                input.business_segment = 'Business';
+                input.customer.business_segment = 'Business';
             }
 
             return input;
@@ -90,17 +90,17 @@ export default function mapper(input) {
 
         if (partnerSegment.includes("Private Banking")) {
             input.category = 'Private';
-            input.business_segment = 'Private';
-            input.partner_segment = 'Private Banking';
+            input.customer.business_segment = 'Private';
+            input.customer.partner_segment = 'Private Banking';
 
             if ('customer_number' in input.customer) {
                 input.category = 'Private';
-                input.business_segment = 'Private';
+                input.customer.business_segment = 'Private';
             }
 
             if ('company_cvr_number' in input.customer) {
                 input.category = 'Business';
-                input.business_segment = 'Business';
+                input.customer.business_segment = 'Business';
             }
 
             return input;
@@ -108,17 +108,17 @@ export default function mapper(input) {
 
         if (partnerSegment.includes("Private")) {
             input.category = 'Private';
-            input.business_segment = 'Private';
-            input.partner_segment = 'Private';
+            input.customer.business_segment = 'Private';
+            input.customer.partner_segment = 'Private';
 
             if ('customer_number' in input.customer) {
                 input.category = 'Private';
-                input.business_segment = 'Private';
+                input.customer.business_segment = 'Private';
             }
 
             if ('company_cvr_number' in input.customer) {
                 input.category = 'Business';
-                input.business_segment = 'Business';
+                input.customer.business_segment = 'Business';
             }
 
             return input;
@@ -127,14 +127,14 @@ export default function mapper(input) {
 
     if ('customer_number' in input.customer) {
         input.category = 'Private';
-        input.business_segment = 'Private';
+        input.customer.business_segment = 'Private';
 
         return input;
     }
 
     if ('company_cvr_number' in input.customer) {
         input.category = 'Business';
-        input.business_segment = 'Business';
+        input.customer.business_segment = 'Business';
 
         return input;
     }
