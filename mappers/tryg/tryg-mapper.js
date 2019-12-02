@@ -1,6 +1,22 @@
 export default function mapper(input) {
     input.booking_system = 'Skedify';
 
+    try {
+        if (input.customer.postal_address.country == null) {
+            input.customer.postal_address.country = 'Danmark'
+        }
+    } catch (e) {
+        // Swallow error
+    }
+
+    try {
+        if (input.appointment.office.location.country == null) {
+            input.appointment.office.location.country = 'Danmark'
+        }
+    } catch (e) {
+        // Swallow error
+    }
+
     if ('category' in input) {
         return input;
     }
