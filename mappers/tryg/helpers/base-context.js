@@ -21,11 +21,13 @@ export const baseCommercialContext = {
         "department": "Private Banking Storkøbenhavn",
         "email": "nkro@danskebank.dk"
     },
-    "office": {
-        "location": {
-            "street_1": "Solrød Center 15",
-            "postal_code": "2680",
-            "city": "Solrød Strand"
+    "appointment": {
+        "office": {
+            "location": {
+                "street_1": "Solrød Center 15",
+                "postal_code": "2680",
+                "city": "Solrød Strand"
+            }
         }
     }
 };
@@ -55,11 +57,13 @@ export const basePrivateContext = {
         "department": "Private Banking Storkøbenhavn",
         "email": "nkro@danskebank.dk"
     },
-    "office": {
-        "location": {
-            "street_1": "Centrumgaden 6",
-            "postal_code": "2750",
-            "city": "Ballerup"
+    "appointment": {
+        "office": {
+            "location": {
+                "street_1": "Centrumgaden 6",
+                "postal_code": "2750",
+                "city": "Ballerup"
+            }
         }
     }
 };

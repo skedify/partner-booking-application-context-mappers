@@ -17,6 +17,16 @@ export default function mapper(input) {
         // Swallow error
     }
 
+    try {
+        if (input.appointment.office.location.street_1 != null) {
+            const street = input.appointment.office.location.street_1;
+            delete input.appointment.office.location.street_1;
+            input.appointment.office.location.street = street;
+        }
+    } catch (e) {
+        // Swa
+    }
+
     if ('category' in input) {
         return input;
     }
@@ -25,13 +35,13 @@ export default function mapper(input) {
         return input;
     }
 
-    if ('propertyType' in input.customer) {
-        input.propertyType = input.customer.propertyType;
+    if ('housing_type' in input.customer) {
+        input.housing_type = input.customer.housing_type;
     }
 
-    const propertyType = input.propertyType;
+    const housingType = input.housing_type;
 
-    switch (propertyType) {
+    switch (housingType) {
         case 'APARTMENT':
         case 'BUSIRENTAL':
         case 'GARDEN':
@@ -61,15 +71,20 @@ export default function mapper(input) {
 
     if (('partner_segment' in input.customer)) {
 
-        const partnerSegment = input.customer.partner_segment;
+        let partnerSegment = input.customer.partner_segment;
+        if (Array.isArray(partnerSegment)) {
+            partnerSegment = partnerSegment.map(p => p.toLowerCase());
+        } else {
+            partnerSegment = partnerSegment.toLowerCase();
+        }
 
-        if (partnerSegment.includes("Employee")) {
+        if (partnerSegment.includes('employee')) {
             input.employee = 'DB';
         } else {
             input.employee = '';
         }
 
-        if (partnerSegment.includes("Business")) {
+        if (partnerSegment.includes('business')) {
             input.category = 'Business';
             input.customer.business_segment = 'Business';
             input.customer.partner_segment = 'Business';
@@ -86,7 +101,7 @@ export default function mapper(input) {
             return input;
         }
 
-        if (partnerSegment.includes("Business Direct")) {
+        if (partnerSegment.includes('business direct')) {
             input.category = 'Business';
             input.customer.business_segment = 'Business';
             input.customer.partner_segment = 'Business Direct';
@@ -104,7 +119,7 @@ export default function mapper(input) {
             return input;
         }
 
-        if (partnerSegment.includes("Private Banking")) {
+        if (partnerSegment.includes('private banking')) {
             input.category = 'Private';
             input.customer.business_segment = 'Private';
             input.customer.partner_segment = 'Private Banking';
@@ -122,7 +137,7 @@ export default function mapper(input) {
             return input;
         }
 
-        if (partnerSegment.includes("Private")) {
+        if (partnerSegment.includes('private')) {
             input.category = 'Private';
             input.customer.business_segment = 'Private';
             input.customer.partner_segment = 'Private';

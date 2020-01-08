@@ -157,4 +157,11 @@ describe('TrygMapper', () => {
         const result = mapper(context);
         expect(result).toEqual(context);
     });
+
+    it('should re-map the location address', () => {
+        const context= JSON.parse(JSON.stringify(basePrivateContext));
+        const result = mapper(context);
+
+        expect(result.appointment.office.location.street).toEqual('Centrumgaden 6');
+    });
 });
