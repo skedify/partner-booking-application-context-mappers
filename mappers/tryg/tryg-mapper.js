@@ -2,8 +2,8 @@ export default function mapper(input, headers) {
     input.booking_system = 'Skedify';
 
     try {
-        if (headers['X-GlobalTransactionID'] != null) {
-            input.global_transaction_id = headers['X-GlobalTransactionID'];
+        if (headers['x-globaltransactionid'] != null) {
+            input.global_transaction_id = headers['x-globaltransactionid'];
         }
     } catch (e) {
         // Swallow error
