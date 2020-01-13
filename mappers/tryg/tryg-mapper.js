@@ -1,5 +1,13 @@
-export default function mapper(input) {
+export default function mapper(input, headers) {
     input.booking_system = 'Skedify';
+
+    try {
+        if (headers['X-GlobalTransactionID'] != null) {
+            input.global_transaction_id = headers['X-GlobalTransactionID'];
+        }
+    } catch (e) {
+        // Swallow error
+    }
 
     try {
         if (input.customer.postal_address.country == null) {
