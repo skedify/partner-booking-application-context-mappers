@@ -32,7 +32,33 @@ export default function mapper(input, headers) {
             input.appointment.office.location.street = street;
         }
     } catch (e) {
-        // Swa
+        // Swallow error
+    }
+
+    input.filters = [];
+
+    try {
+        if (input.appointment.office.location != null) {
+            const branchAddress = input.appointment.office.location;
+            const formattedBranchAddress = `${branchAddress.street} ${branchAddress.house_number}${branchAddress.postal_code}${branchAddress.city}`;
+            const offices = await sdk.offices().include(sdk.include.contacts);
+            const office = offices?.data.find(o => {
+                const formattedSkedifyAddress = `${o.location.street_1}${branchAddress.postal_code}${branchAddress.city}`;
+                return formattedSkedifyAddress === formattedBranchAddress;
+            });
+
+            if (office !== undefined) {
+                input.filters.push({
+                    contacts: office.contacts.map(c => c.id),
+                    meetingType: 'PHONE',
+                }, {
+                    contacts: office.contacts.map(c => c.id),
+                    meetingType: 'VIDEO',
+                });
+            }
+        }
+    } catch (e) {
+        // Swallow error
     }
 
     if ('category' in input) {
