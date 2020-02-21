@@ -1,4 +1,4 @@
-export default function mapper(input, headers) {
+export default async function mapper(input, headers) {
     input.booking_system = 'Skedify';
 
     try {
@@ -42,18 +42,24 @@ export default function mapper(input, headers) {
             const branchAddress = input.appointment.office.location;
             const formattedBranchAddress = `${branchAddress.street} ${branchAddress.house_number}${branchAddress.postal_code}${branchAddress.city}`;
             const offices = await sdk.offices().include(sdk.include.contacts);
-            const office = offices?.data.find(o => {
-                const formattedSkedifyAddress = `${o.location.street_1}${branchAddress.postal_code}${branchAddress.city}`;
+            const office = offices.data.find(o => {
+                const formattedSkedifyAddress = `${o.location.street_1}${o.location.postal_code}${o.location.city}`;
                 return formattedSkedifyAddress === formattedBranchAddress;
             });
 
-            if (office !== undefined) {
-                input.filters.push({
-                    contacts: office.contacts.map(c => c.id),
-                    meetingType: 'PHONE',
-                }, {
-                    contacts: office.contacts.map(c => c.id),
-                    meetingType: 'VIDEO',
+            if (office != null) {
+                offices.data.forEach(o => {
+                    if (o.external_id === 'SalesAgents') {
+                        input.filters.push({
+                            contacts: office.contacts.map(c => c.id),
+                            meetingType: 'PHONE',
+                            office: o.id,
+                        }, {
+                            contacts: office.contacts.map(c => c.id),
+                            meetingType: 'VIDEO',
+                            office: o.id,
+                        });
+                    }
                 });
             }
         }
