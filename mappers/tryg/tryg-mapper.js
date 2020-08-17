@@ -7,6 +7,17 @@ export default async function mapper(input, headers) {
     } catch (e) {
     }
     try {
+        if (input.appointment.booker != null) {
+            input.booker = {
+                bookerSource: 'context',
+                email: input.appointment.booker.email,
+                externalId: input.appointment.booker.employee_number,
+                employeeRegistrationNumber: input.appointment.booker.employee_registration_number
+            }
+        }
+    } catch (e) {}
+
+    try {
         if (input.customer.postal_address.country == null) {
             input.customer.postal_address.country = 'Danmark'
         }
